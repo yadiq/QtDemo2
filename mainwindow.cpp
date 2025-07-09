@@ -6,6 +6,11 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QVBoxLayout>
+//FFmpeg 是 C 库
+extern "C" {
+    #include <libavcodec/avcodec.h>
+    #include <libavformat/avformat.h>
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent)
     // 连接拍照按钮的点击事件
     connect(ui->btnTakePhoto, &QPushButton::clicked, this, &MainWindow::takePhoto);
     connect(ui->btnGetCameraInfo, &QPushButton::clicked, this, &MainWindow::getCameraInfo);
+
+    testFFmpeg();
 }
 
 MainWindow::~MainWindow()
@@ -76,5 +83,9 @@ void MainWindow::getCameraInfo()
             qDebug() << "====================";
         }
     }
+}
+
+void MainWindow::testFFmpeg() {
+    qDebug() << "FFmpeg version:" << av_version_info();
 }
 

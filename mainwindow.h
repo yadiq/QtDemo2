@@ -27,5 +27,7 @@ private:
     QCamera *camera;
     QCameraImageCapture *imageCapture;
 
+    void testFFmpeg();
+
 };
 #endif // MAINWINDOW_H
